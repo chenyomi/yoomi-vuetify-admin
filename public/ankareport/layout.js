@@ -1,0 +1,352 @@
+const layout = {
+  "width": 1043,
+  "textAlign": "",
+  "borderWidth": 1,
+  "borderStyle": "none",
+  "fontSize": "14px",
+  "fontWeight": "",
+  "headerSection": {
+    "height": 140,
+    "binding": "",
+    "items": [
+      {
+        "x": 320,
+        "y": 9,
+        "width": 400,
+        "height": 30,
+        "name": "",
+        "text": "公司名称",
+        "binding": "companyName",
+        "fontSize": "22px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 479,
+        "y": 46,
+        "width": 80,
+        "height": 30,
+        "name": "",
+        "text": "送 货 单",
+        "binding": "",
+        "fontFamily": "Arial",
+        "fontSize": "20px",
+        "fontWeight": ""
+      },
+      {
+        "x": 0,
+        "y": 116,
+        "width": 40,
+        "height": 20,
+        "name": "",
+        "text": "序号",
+        "binding": "",
+        "borderWidth": 1,
+        "borderStyle": "none",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 40,
+        "y": 116,
+        "width": 120,
+        "height": 20,
+        "name": "",
+        "text": "订货单号",
+        "binding": "",
+        "borderWidth": 1,
+        "borderStyle": "none",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 160,
+        "y": 116,
+        "width": 180,
+        "height": 20,
+        "name": "",
+        "text": "物料编码",
+        "binding": "",
+        "borderWidth": 1,
+        "borderStyle": "none",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 520,
+        "y": 116,
+        "width": 180,
+        "height": 20,
+        "name": "",
+        "text": "规格图号",
+        "binding": "",
+        "borderWidth": 1,
+        "borderStyle": "none",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 790,
+        "y": 116,
+        "width": 50,
+        "height": 20,
+        "name": "",
+        "text": "单位",
+        "binding": "",
+        "borderWidth": 1,
+        "borderStyle": "none",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 700,
+        "y": 116,
+        "width": 90,
+        "height": 20,
+        "name": "",
+        "text": "送货数量",
+        "binding": "",
+        "borderWidth": 1,
+        "borderStyle": "none",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 340,
+        "y": 116,
+        "width": 180,
+        "height": 20,
+        "name": "",
+        "text": "物料名称",
+        "binding": "",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 840,
+        "y": 116,
+        "width": 200,
+        "height": 20,
+        "name": "",
+        "text": "备注",
+        "binding": "",
+        "fontSize": "14px",
+        "fontWeight": "bold"
+      },
+      {
+        "x": 0,
+        "y": 86,
+        "width": 78,
+        "height": 20,
+        "name": "",
+        "text": "送货日期：",
+        "binding": "",
+        "fontSize": "14px"
+      },
+      {
+        "x": 66,
+        "y": 86,
+        "width": 100,
+        "height": 20,
+        "name": "",
+        "text": "Text",
+        "binding": "shipDate",
+        "textAlign": "",
+        "fontSize": "14px"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "width": 100,
+        "height": 20,
+        "name": "",
+        "text": "Image",
+        "binding": "url",
+        "borderWidth": 2
+      },
+      {
+        "x": 982,
+        "y": 0,
+        "width": 58,
+        "height": 59,
+        "name": "",
+        "text": "Image",
+        "binding": "urlAv"
+      }
+    ],
+    "sections": [],
+    "textAlign": "center"
+  },
+  "contentSection": {
+    "height": 25,
+    "binding": "items",
+    "items": [
+      {
+        "x": 0,
+        "y": 0,
+        "width": 40,
+        "height": 25,
+        "name": "",
+        "text": "sort",
+        "binding": "sort",
+        "backgroundColor": "#eeeeee",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 40,
+        "y": 0,
+        "width": 120,
+        "height": 25,
+        "name": "",
+        "text": "cinvcode",
+        "binding": "cinvcode",
+        "backgroundColor": "#eeeeee",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 160,
+        "y": 0,
+        "width": 180,
+        "height": 25,
+        "name": "",
+        "text": "cinvstd",
+        "binding": "cinvstd",
+        "backgroundColor": "#eeeeee",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 340,
+        "y": 0,
+        "width": 180,
+        "height": 25,
+        "name": "",
+        "text": "cinvname",
+        "binding": "cinvname",
+        "backgroundColor": "#eeeeee",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 520,
+        "y": 0,
+        "width": 180,
+        "height": 25,
+        "name": "",
+        "text": "cinvstd",
+        "binding": "cinvstd",
+        "backgroundColor": "#eeeeee",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 790,
+        "y": 0,
+        "width": 50,
+        "height": 25,
+        "name": "",
+        "text": "cComUnitName",
+        "binding": "cComUnitName",
+        "backgroundColor": "#eeeeee",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 700,
+        "y": 0,
+        "width": 90,
+        "height": 25,
+        "name": "",
+        "text": "iQuantity",
+        "binding": "iQuantity",
+        "backgroundColor": "#eeeeee",
+        "textAlign": "center",
+        "borderWidth": 1,
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      },
+      {
+        "x": 840,
+        "y": 0,
+        "width": 200,
+        "height": 25,
+        "name": "",
+        "text": "cMemos",
+        "binding": "cMemos",
+        "backgroundColor": "#eeeeee",
+        "borderStyle": "solid",
+        "fontSize": "14px"
+      }
+    ],
+    "sections": [],
+    "textAlign": "center"
+  },
+  "footerSection": {
+    "height": 100,
+    "binding": "",
+    "items": [
+      {
+        "x": 10,
+        "y": 40,
+        "width": 80,
+        "height": 20,
+        "name": "",
+        "text": "制单人：",
+        "binding": "",
+        "fontSize": "14px",
+        "fontWeight": ""
+      },
+      {
+        "x": 410,
+        "y": 40,
+        "width": 80,
+        "height": 20,
+        "name": "",
+        "text": "收货人：",
+        "binding": "",
+        "fontSize": "14px",
+        "fontWeight": ""
+      },
+      {
+        "x": 770,
+        "y": 40,
+        "width": 120,
+        "height": 20,
+        "name": "",
+        "text": "收货方检验：",
+        "binding": "",
+        "fontSize": "14px",
+        "fontWeight": ""
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "width": 100,
+        "height": 20,
+        "name": "",
+        "text": "合计：",
+        "binding": "",
+        "fontSize": "14px"
+      },
+      {
+        "x": 700,
+        "y": 8,
+        "width": 90,
+        "height": 20,
+        "name": "",
+        "text": "sum",
+        "binding": "sum",
+        "textAlign": "center",
+        "fontSize": "14px"
+      }
+    ],
+    "sections": []
+  }
+}

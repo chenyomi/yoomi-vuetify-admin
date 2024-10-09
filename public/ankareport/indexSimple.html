@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WELLLIH报表设计器</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="ankareport.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.12.3/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> -->
+    <script src="./ace.js"></script>
+    <script src="./html2pdf.bundle.min.js"></script>
+    <script src="./ankareport.js"></script>
+    <script src="./layout.js"></script>
+    <script src="./data-source.js"></script>
+    <script src="./data.js"></script>
+  </head>
+  <body>
+    <div class="container" style="overflow: hidden">
+      <div class="content">
+        <div id="report"></div>
+      </div>
+    </div>
+
+    <script>
+      const rendererDiv = document.getElementById("report");
+
+      const exportToPdf = () => {
+        var printSection = document.getElementById("report"); // 要打印的DOM元素
+        // 将DOM内容写入新窗口
+        var printWindow = window;
+        window.document.write(printSection.innerHTML); // 写入要打印的内容
+        window.document.close(); // 关闭文档
+        window.focus(); // 聚焦新窗口，以确保print命令响应
+        window.print();
+        window.close(); // 关闭窗口
+      };
+
+      const base = localStorage.getItem("base") || "http://localhost:9003";
+      const id = localStorage.getItem("d-id");
+      const type = localStorage.getItem("d-type");
+      const token = localStorage.getItem("token");
+
+      window.onload = () => {
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          base + `/api/supapp/sup/print?templateParam=${type}&id=${id}`,
+          true
+        );
+        xhr.setRequestHeader("Token", token);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            const res = JSON.parse(xhr.response).data;
+            res.content.urlAv =
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAIAAADxLsZiAAAF4klEQVR4nOzXwa2jMABF0cmIAuiMFiiNFujMJcxull9RpG+L3HMa8JMSLmYbY/wB+HZ/Vw8AmEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyAhG3aSfc1pp01zXHuqyfQ4jn6mJsdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QsK0e8Gz3NVZPAN7yGsPj+iGlY4nj3FdPeCSfsUCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkPAaY8w56b4mHQQ8y3HuE07ZJpzBg8z5203jFct/PmOBBLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7ICEbfWAZzvOffUEfvJ9P9B9jdUTnsrNDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDErbVA57tvsbqCcBb3OyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSxA5IEDsgQeyABLEDEsQOSBA7IEHsgASxAxLEDkgQOyBB7IAEsQMSXmOM1RsAfp2bHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkCB2QILYAQliBySIHZAgdkCC2AEJYgckiB2QIHZAgtgBCWIHJIgdkPAvAAD//+hHJdMKcbPYAAAAAElFTkSuQmCC";
+            res.content.url =
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN8AAAAlCAYAAADC8DxTAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAArxJREFUeNrsnE1um0AYQMdVDoBvQG7gSl1101Sq2kU3yQninCDJCepld05PEPcG2XTTTdx9pXCDcoNwAzJfTSWLDDDA/JD6PWlkGTzw+WMePwPDrCxLBQDheUUKAJAPAPkAwD9HpolvP3w61R+Xhlm5Lte6FB3Lbat/YRHXUpdzw/SsWr/NukLzXZdNbdpKl3eG3/6q5vkm0WWtS2qY902Xu0C5kRgWljmbZAw/3vy0zfdt9Vnnev61zPYnzEwdLlq+x4YFqKrx33QE0daLc2HxZ9vqn9UaTVusoZnv7ZhkQz+0/PZ1tTPxyVXV6EwUVby+WVYNsolZgBhOdLlvmX9cHRjGyic71C8N83It37HNaWfSYfcY0pH1F47jccmiR1wh4k4ir9/F9o4eo6V4vdfBNR+Af/GMIB9ABPGQDyCSeMjnnowUIJ4tR/95HnPV0YvVgXSg2HZMSC9uQdNFPOTbIfdwVgPrLtWui9pWvA1NFzjtHI+Id4t4HPU48oXlBPEOGrnUWA+smyLfePkQ73BZ92gDnHY6RoQqEA+QLzy5Lu9bBEQ8QD6PZA0CIh4gX2ABC8QD19Dh0i3gnDQA8gH4R8arypi8IUOuUtXjdgPyATw/2zkbWHelmgfTOrnmk4WXHcVnfdexuigymr7vjdl7DzEse8bgOg9/lPlVDVOP4S+ff3+kw+UFIqcoVyruqO1EDX8ywxXy/y8nEMP6JTQa5HO/4WPvBA49B6MIefRDPoBIAiIfQCQBkQ8gkoBN8k15RPbdRGOVOPZfI5FHiCHv+B6C+qs0tpG2RZ82kjkSsG09z/LQdJ9PHqs6naB4uSFRU4l1W0u+xCr3ixYBY6jvmDZq1wmTBGz0G0Ne5NG8NGAebgxyNW2LrcMd+L/1mvJdz4v5jdUA4B+u+QCQDwD5AAD5AJAPABzzJMAAKanyM7blr3sAAAAASUVORK5CYII=";
+
+            rendererDiv.innerHTML = "";
+
+            const renderer = AnkaReport.render({
+              element: rendererDiv,
+              layout: res.template,
+              data: res.content,
+            });
+            setTimeout(() => {
+              exportToPdf();
+            }, 0);
+          }
+        };
+      };
+    </script>
+  </body>
+</html>
